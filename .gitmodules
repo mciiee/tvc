@@ -1,0 +1,4 @@
+[submodule "libs/wlroots"]
+	path = libs/wlroots
+	url = https://gitlab.freedesktop.org/wlroots/wlroots.git
+	branch = 0.19
