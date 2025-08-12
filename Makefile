@@ -1,6 +1,6 @@
 CC=clang
 
-ifneq (ASAN,)
+ifneq ($(ASAN),)
 ASAN_FLAGS=-g -fsanitize=address
 else
 ASAN_FLAGS=
@@ -22,8 +22,8 @@ WLROOTS_BRANCH=0.19
 WLROOTS_LIB=$(WLROOTS_DIR)/build/libwlroots-0.19.so
 WLROOTS_FLAGS=-DWLR_USE_UNSTABLE -I$(WLROOTS_DIR)/include $(shell $(PKGCONF) --cflags wlroots)
 
-LIBS=$(WLROOTS_LIB) 
-LIBS_FLAGS=$(WLROOTS_FLAGS) -lwayland-server
+LIBS=$(WLROOTS_LIB) -lwayland-server
+LIBS_FLAGS=$(WLROOTS_FLAGS) 
 
 NPROC != nproc
 
