@@ -7,10 +7,11 @@ ASAN_FLAGS=
 endif
 # INCLUDE_FLAGS=-I$(WLROOTS_DIR)/include
 
-CFLAGS=-Wall -Werror -Wpedantic -std=c23 $(ASAN_FLAGS) $(LIBS_FLAGS)
+CFLAGS=-Wall -Werror -Wpedantic -std=c23 $(ASAN_FLAGS) $(INCLUDE_FLAGS) $(LIBS_FLAGS)
 
 SRC_DIR=src
 BUILD_DIR=build
+INCLUDE_DIR=include
 LIBS_DIR=libs
 
 OUTFILE=$(BUILD_DIR)/tvc
@@ -21,6 +22,8 @@ WLROOTS_DIR=$(LIBS_DIR)/wlroots
 WLROOTS_BRANCH=0.19
 WLROOTS_LIB=$(WLROOTS_DIR)/build/libwlroots-0.19.so
 WLROOTS_FLAGS=-DWLR_USE_UNSTABLE -I$(WLROOTS_DIR)/include $(shell $(PKGCONF) --cflags wlroots)
+
+INCLUDE_FLAGS=-I$(INCLUDE_DIR)
 
 LIBS=$(WLROOTS_LIB) -lwayland-server
 LIBS_FLAGS=$(WLROOTS_FLAGS) 
