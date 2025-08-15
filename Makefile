@@ -30,21 +30,28 @@ LIBS_FLAGS=$(WLROOTS_FLAGS)
 
 NPROC != nproc
 
-.PHONY: submoddules
+.PHONY: submoddules tvc deps wlroots
+
+tvc: $(OUTFILE)
+
+submoddules:
+	git submodule update --init
+
+deps: wlroots
+
+depclean:
+	cd $(WLROOTS_DIR) && rm -rf build/ 
+
+$(WLROOTS_DIR): submoddules
+
+$(WLROOTS_LIB): $(WLROOTS_DIR)
+	cd $(WLROOTS_DIR) && meson setup build/ && ninja -j$(NPROC) -C build/
+
+wlroots: $(WLROOTS_LIB)
+
 
 $(OUTFILE): $(BUILD_DIR)/main.o
 	$(CC) $(CFLAGS) $(LIBS) $^ -o $@
 
 $(BUILD_DIR)/main.o: $(SRC_DIR)/main.c
 	$(CC) $(CFLAGS) -c $^ -o $@
-
-
-submoddules:
-	git submodule update --init
-
-$(WLROOTS_DIR): submoddules
-
-$(WLROOTS_LIB): $(WLROOTS_DIR)
-	cd $(WLROOTS_DIR)
-	meson setup build/
-	ninja $(NPROC) -C build/
