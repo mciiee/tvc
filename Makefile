@@ -51,8 +51,11 @@ $(WLROOTS_LIB): $(WLROOTS_DIR)
 wlroots: $(WLROOTS_LIB)
 
 
-$(OUTFILE): $(BUILD_DIR)/main.o
+$(OUTFILE): $(BUILD_DIR)/main.o $(BUILD_DIR)/event_callbacks.o
 	$(CC) $(CFLAGS) $(LIBS) $^ -o $@
 
-$(BUILD_DIR)/main.o: $(SRC_DIR)/main.c
+$(BUILD_DIR)/main.o: $(SRC_DIR)/main.c 
+	$(CC) $(CFLAGS) -c $^ -o $@
+
+$(BUILD_DIR)/event_callbacks.o: $(SRC_DIR)/event_callbacks.c 
 	$(CC) $(CFLAGS) -c $^ -o $@
