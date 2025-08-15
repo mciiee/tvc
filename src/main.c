@@ -29,7 +29,7 @@ void tvc_terminate(int exit_code){
     wl_display_terminate(server.display);
 }
 
-bool parseCliOptions(int argc, char **argv, CliOptions *options){
+static bool parseCliOptions(int argc, char **argv, CliOptions *options){
     constexpr char USAGE_TEMPLATE[] = "Usage: %s [-c config path] [-s startup command]\n";
     constexpr char SHORTOPS[] = "c:s:h";
     int ch = getopt(argc, argv, SHORTOPS);
