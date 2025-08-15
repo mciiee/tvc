@@ -21,7 +21,8 @@ PKGCONF=pkg-config
 WLROOTS_DIR=$(LIBS_DIR)/wlroots
 WLROOTS_BRANCH=0.19
 WLROOTS_LIB=$(WLROOTS_DIR)/build/libwlroots-0.19.so
-WLROOTS_FLAGS=-DWLR_USE_UNSTABLE -I$(WLROOTS_DIR)/include $(shell $(PKGCONF) --cflags wlroots)
+WLROOTS_FLAGS=-DWLR_USE_UNSTABLE -I$(WLROOTS_DIR)/include $(shell $(PKGCONF) --cflags wlroots-$(WLROOTS_BRANCH))
+WLROOTS_PKGCONFIG_DIR=/usr/lib64/pkgconfig
 
 INCLUDE_FLAGS=-I$(INCLUDE_DIR)
 
