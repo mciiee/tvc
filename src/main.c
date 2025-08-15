@@ -17,6 +17,8 @@
 #include <wlr/types/wlr_subcompositor.h>
 #include <wlr/types/wlr_data_device.h>
 #include <wlr/types/wlr_output_layout.h>
+#include <wlr/types/wlr_output.h>
+#include <wlr/types/wlr_scene.h>
 
 #include "tvc_server.h"
 #include "event_callbacks.h"
@@ -92,10 +94,12 @@ int main(int argc, char *argv[]){
     server.dataDeviceManager = wlr_data_device_manager_create(server.display);
     
     server.outputLayout = wlr_output_layout_create(server.display);
-
     
-	//wl_list_init(&server.outputs);
-	//    server.newOutput.notify = server_new_output;
+    
+    
+	wl_list_init(&server.outputs);
+	server.newOutput.notify = server_new_output;
+
         
 
     return EXIT_SUCCESS;
