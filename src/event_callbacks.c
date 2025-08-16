@@ -2,7 +2,6 @@
 #include "tvc_server.h"
 #include <stdlib.h>
 #include <time.h>
-#include <bits/time.h>
 #include <unistd.h>
 #include <wayland-util.h>
 #include <wlr/types/wlr_output.h>
